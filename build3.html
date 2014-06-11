@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Tree Building Algorithms</title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+		<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+	
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">Phylo-Made-Easy</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="msa1.html">Multiple Sequence Alignment</a></li>
+						<li><a href="dm1.html">Distance Matrices</a></li>
+						<li class="dropdown">
+							<a href="build1.html" class="dropdown-toggle" data-toggle="dropdown">Building Algorithms <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-header">Distance-Based</li>
+								<li><a href="build1.html">UPGMA Method</a></li>
+								<li><a href="build2.html">Neighbor Joining Method</a></li>
+								<li class="active"><a href="build3.html">Fitch-Margoliash Method</a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">Character-Based</li>
+								<li><a href="build4.html">Maximum Parsimony Method</a></li>
+								<li><a href="build5.html">Maximum Likelihood Method</a></li>
+							</ul>
+						</li>
+						<li><a href="terms.html">Terms and Equations</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div> <br><br><br>
+	
+		<h1 class="text-center">Fitch-Margoliash Method</h1> <br>
+		<div class="span5" style="padding-left:100px;padding-right:100px">
+			<p>The Fitch-Margoliash (FM) method is similar to the NJ method in that it constructs a phylogenetic tree with an additive
+			distance matrix, and does not assume that genetic mutation is constant. However, the FM method calculates the branch lengths differently. </p> <br>
+			<div style="text-align:center">
+				<img src="http://i1168.photobucket.com/albums/r497/tquintan1/FM_zps6ff7d3b0.jpg" width="325" height="250">
+			</div> <br>
+			<p>Given the above figure, the distances between X, Y, and Z are as follows, given that the branch lengths are known:</p> <br>
+			<h3 align="center">$d_{XY} = b_{1} + b_{2}$<br>
+			$d_{XZ} = b_{1} + b_{3}$<br>
+			$d_{YZ} = b_{2} + b_{3}$</h3> <br>
+			<p>The FM method, as previously mentioned, has a unique way of calculating the branch lengths, given that the distances
+			between each OTU is known:</p> <br>
+			<h3 align="center">$b_{1} = \frac{1}{2}(d_{XY} + d_{XZ} - d_{YZ})$<br>
+			$b_{2} = \frac{1}{2}(d_{XY} + d_{YZ} - d_{XZ})$<br>
+			$b_{3} = \frac{1}{2}(d_{XZ} + d_{YZ} - d_{XY})$</h3> <br>
+			<p>The FM algorithm is as follows:</p>
+				<ol>
+					<li>
+						Find the pair of sequences in the data matrix which have the lowest genetic distance between them. Place these sequences
+						in an unrooted tree as a single clade, with the remaining sequences as a single node which is separated from the clade by an arbitrary distance. This
+						tree will be similar to the one presented above, with $Y$ and $Z$ representing the similar sequences, and $X$ representing all other sequences. <br><br><br>
+						<div style="text-align: center">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B3_1b_zpsea717a17.jpg">
+						</div>
+					</li> <br><br>
+					<li>
+						Using the following equation, calculate the distance between each of these similar sequences and the rest of the sequences, with $d$ being the
+						pairwise distance, $N$ being the number of OTUs, or sequences, in the node: <br><br>
+						<h3 align="center">$d_{AB} = \frac{1}{N_{A}N_{B}}\sum\limits_{i \in A, j \in B}d_{ij}$</h3> <br><br>
+						<div style="text-align: center">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B3_2b_zps437290b6.jpg" width="640" height="230">
+						</div>
+					</li> <br><br>
+					<li>
+						From these distances, and the distances provided in the distance matrix, use the aforementioned equations to find the branch lengths. <br><br><br>
+						<div style="text-align: center">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B3_3b_zps586bf84d.jpg" width="570" height="260">
+						</div>
+					</li> <br><br>
+					<li>
+						Update the distance matrix using the following equation, where $D$ is a node containing $B$ and $C$: <br><br>
+						<h3 align="center">$d_{DA} = \frac{N_{B}d_{BA} + N_{C}d_{CA}}{N_{B} + N_{C}}$</h3> <br><br>
+						<div style="text-align: center">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B3_4b_zpsf4f91ab3.jpg" width="580" height="280">
+						</div>
+					</li> <br><br>
+					<li>
+						Repeat these steps until each node within the tree has at most two sequences. Then, replace each node containing multiple
+						sequences with a clade made from those sequences. The end result will be an unrooted phylogenetic tree.
+					</li>
+				</ol> <br>
+			
+			<p>The FM method focuses more on closely related sequences, and gives them a higher weight when forming the tree than sequences which are
+			distantly related. Therefore, with assuming that the rate of evolution differs among distinct organisms, the FM method is used when the
+			sequences of interest are from the same genus. Also, the FM method can only be used on data which satisfies the additive property, as
+			described in the NJ method.</p>			
+			<p>The FM method is $O(n^{2})$, as there are $n-2$ iterations, with each iteration calculating $n-2$ values within the matrix.</p> <br><br>
+		
+			<div id="carousel-id" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner">
+						<div class="item active" style="text-align:center">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B3_1_zps8740939d.jpg"> <br>
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B3_5_zpsf3f7974f.jpg">
+						</div>
+						<div class="item">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B3_2_zps2a696a44.jpg"> <br>
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B3_6_zpsd9e10dc6.jpg">
+						</div>
+						<div class="item">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B3_3_zpsaa7bc782.jpg"> <br>
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B3_7_zpsba5006ea.jpg">
+						</div>
+						<div class="item">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B3_4_zpsa3a8f55b.jpg">
+						</div>
+					</div>
+					<a class="carousel-control left" href="#carousel-id" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</a>
+					<a class="carousel-control right" href="#carousel-id" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+			</div> <br><br><br>
+		</div>
+		
+		<div class="span5" style="padding-left:100px;padding-right:100px">
+			<h3>Try It Yourself</h3> <br><br>
+			
+			<div>
+				<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B3_8_zpsf9902898.jpg" height="180" width="325">
+			</div> <br><br><br>
+			
+			<form role="form" id="form1" class="form form-horizontal" method="post">
+				<div class="form-group">
+					<label for="ans1">Given that $A$ and $B$ have the lowest genetic distance of 15, and $X$ = {$C,D,E$}...</label> <br><br>
+					What is $d_{XA}$, rounded to two decimals if it is not a whole number? <br><br>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="ans1">
+					</div> <br><br><br>
+					What is $d_{XB}$, rounded to two decimals if it is not a whole number? <br><br>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="ans2">
+					</div> <br><br><br>
+					What is $d_{AB}$, rounded to two decimals if it is not a whole number? <br><br>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="ans3">
+					</div>
+				</div>
+				<button id="sub1" type="button" class="btn btn-default">Submit</button>
+			</form> <br><br><br><br><br>
+			
+			<div>
+				<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B3_9_zps1388543f.jpg" height="180" width="325">
+			</div> <br><br><br>
+			
+			<form role="form" id="form2" class="form form-horizontal" method="post">
+				<div class="form-group">
+					<label for="ans1">Forming the appropriate unrooted tree...</label> <br><br>
+					What is $b_{1}$, rounded to three decimals if it is not a whole number? <br><br>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="ans4">
+					</div> <br><br><br>
+					What is $b_{2}$, rounded to three decimals if it is not a whole number? <br><br>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="ans5">
+					</div> <br><br><br>
+					What is $b_{3}$, rounded to three decimals if it is not a whole number? <br><br>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="ans6">
+					</div>
+				</div>
+				<button id="sub2" type="button" class="btn btn-default">Submit</button>
+			</form> <br><br><br>
+		</div>
+		
+		<style>
+			.carousel{
+			width: 45%;
+			max-height: 525px;
+			margin: auto;
+			border-style: solid;
+			border-width: 1px;
+			}
+				
+			.carousel img{
+			margin: 0 auto;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			}
+				
+			.carousel-control.left, .carousel-control.right {
+			background-image: none
+			}
+		</style>
+		
+		<div class="text-center">
+			<a href="build2.html" class="btn btn-default" role="button">Previous Section</a>
+			<a href="build4.html" class="btn btn-default" role="button">Next Section</a>
+		</div>
+		
+		<script>
+			$(document).ready(function(){
+				$('.carousel').carousel({
+					interval: false
+				});
+				
+				$('#sub1').on('click', function(e){
+					if ($("#ans1").val() == "46.67" && $("#ans2").val() == "43" && $("#ans3").val() == "15"){
+						alert("Correct!");
+					}
+					else {
+						alert("One or more answers are incorrect. Try again...");
+						document.getElementById("ans1").value="";
+						document.getElementById("ans2").value="";
+						document.getElementById("ans3").value="";
+					}
+				});
+				
+				$('#sub2').on('click', function(e){
+					if (($("#ans4").val() == "0.373" || $("#ans4").val() == ".373")
+					    && ($("#ans5").val() == "0.093" || $("#ans5").val() == ".093")
+						&& ($("#ans6").val() == "0.057" || $("#ans6").val() == ".057")){
+						alert("Correct!");
+					}
+					else {
+						alert("One or more answers are incorrect. Try again...");
+						document.getElementById("ans4").value="";
+						document.getElementById("ans5").value="";
+						document.getElementById("ans6").value="";
+					}
+				});
+			});
+		</script>
+	</body>
+	<footer class="footer"><br><br></footer>
+</html>
