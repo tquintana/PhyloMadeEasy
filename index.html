@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	
+		<title>Phylo-Made-Easy</title>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+		
+	</head>
+	<body>
+	
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">Phylo-Made-Easy</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="msa1.html">Multiple Sequence Alignment</a></li>
+						<li><a href="dm1.html">Distance Matrices</a></li>
+						<li class="dropdown">
+							<a href="build1.html" class="dropdown-toggle" data-toggle="dropdown">Building Algorithms <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-header">Distance-Based</li>
+								<li><a href="build1.html">UPGMA Method</a></li>
+								<li><a href="build2.html">Neighbor Joining Method</a></li>
+								<li><a href="build3.html">Fitch-Margoliash Method</a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">Character-Based</li>
+								<li><a href="build4.html">Maximum Parsimony Method</a></li>
+								<li><a href="build5.html">Maximum Likelihood Method</a></li>
+							</ul>
+						</li>
+						<li><a href="terms.html">Terms and Equations</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div> <br><br><br><br>
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	
+		<div class="jumbotron">
+			<h1 class="text-center">Welcome to Phylo-Made-Easy!</h1>	
+		</div>
+		
+		<div class="span5" style="padding-left:100px;padding-right:100px">
+			<p>Phylo-Made-Easy is a web application that is designed to help you understand the intricacies behind the
+			construction of a phylogenetic tree, utilizing functions and methods used by bioinformaticians in both the lab and industry. But
+			what exactly is a phylogenetic tree?</p>
+			<p>A phylogenetic tree is a representation of the evolutionary relationships between a set of organisms.
+			However, the relationships described by a phylogenetic tree are only estimations based on the information at hand, and are by
+			no means definitive of the evolution which occurred between the organisms of interest. Not only can phylogenetic trees show the connections
+			among organisms, but also among genes or sequences, such as mRNA, DNA, or protein sequences. The focus of this application will be
+			on biological sequences.</p>
+			<p>Bioinformaticians are often asked to create phylogenetic trees from sequences for those who study evolutionary biology.
+			But how does one create a phylogenetic tree?</p>
+			<p>First, the relationship between the given sequences must be estimated through a multiple sequence alignment.
+			It is from this alignment that a distance matrix can be created to determine the evolutionary, or genetic, distance between each of the sequences.
+			A tree representation can then be created through referencing both the alignment and the distance matrix. Such actions can be performed on the tree
+			to help to validate the relationships which were estimated.</p>
+			<p>A "Terms and Equations" page is provided to supply the definitions for common bioinformatics vocabulary. Please
+			refer to this page whenever you come across a word which you you do not understand, as it will provide information in the context of this
+			application.</p> <br>
+			<p class="text-center"><strong>Some parts of this application assume you know how to program in Python. <br>
+			Use the following links to install Python and the BioPython module: <a href="https://www.python.org/download/">Python</a>,
+			<a href="http://biopython.org/wiki/Download">BioPython</a>. <br>
+			If you are unfamiliar with Python, please refer to this <a href="https://wiki.python.org/moin/BeginnersGuide">Beginner's Guide</a>.<br>
+			</strong></p> <br>
+		</div>
+		
+		<div class="span7 text-center">
+			<p><a href="msa1.html" class="btn btn-primary btn-lg" role="button">BEGIN</a></p>
+		</div>	
+	</body>
+	<footer class="footer"><br><br></footer>
+</html>
