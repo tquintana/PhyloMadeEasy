@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Terms and Equations</title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+		<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	</head>
+    <body>
+	
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">Phylo-Made-Easy</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="msa1.html">Multiple Sequence Alignment</a></li>
+						<li><a href="dm1.html">Distance Matrices</a></li>
+						<li class="dropdown">
+							<a href="build1.html" class="dropdown-toggle" data-toggle="dropdown">Building Algorithms <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-header">Distance-Based</li>
+								<li><a href="build1.html">UPGMA Method</a></li>
+								<li><a href="build2.html">Neighbor Joining Method</a></li>
+								<li><a href="build3.html">Fitch-Margoliash Method</a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">Character-Based</li>
+								<li><a href="build4.html">Maximum Parsimony Method</a></li>
+								<li><a href="build5.html">Maximum Likelihood Method</a></li>
+							</ul>
+						</li>
+						<li class="active"><a href="terms.html">Terms and Equations</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div> <br><br><br>
+		
+		<h1 class="text-center">Terms and Equations</h1>
+		
+		<ul>
+			<li><h3>General</h3><br>
+				<ul>
+					<li><strong>Phylogenetic Tree:</strong>
+						<p style="text-indent:25px">A diagram representation of the evolutionary
+						relationships between a group of organisms or biological sequences.</p>
+					</li><br>
+					<li><strong>Bioinformatics:</strong>
+						<p style="text-indent:25px">The process of collecting and analyzing
+						complex biological data.</p>
+					</li>
+				</ul>
+			</li> <br>
+			<li><h3>Multiple Sequence Alignment</h3><br>
+				<ul>
+					<li><strong>Multiple Sequence Alignment:</strong>
+						<p style="text-indent:25px">A sequence alignment of three or more
+						biological sequences.</p>
+					</li><br>
+					<li><strong>Point Mutation:</strong>
+						<p style="text-indent:25px">A mutation which replaces a single
+						nucleotide with another nucleotide.</p>
+					</li>
+				</ul>
+			</li> <br>
+			<li><h3>Distance Matrix</h3><br>
+				<ul>
+					<li><strong>Distance Matrix:</strong>
+						<p style="text-indent:25px">A matrix which displays the pairwise
+						distance between all sequences of interest.</p>
+					</li><br>
+					<li><strong>Genetic Divergence:</strong>
+						<p style="text-indent:25px">The process in which two sequences acquire
+						independent genetic mutations over time.</p>
+					</li><br>
+					<li><strong>Genetic Distance:</strong>
+						<p style="text-indent:25px">A measure of the genetic divergence
+						between sequences.</p>
+					</li><br>
+					<li><strong>Pairwise Distance:</strong>
+						<h4 style="text-indent:25px">$d = -\frac{3}{4} ln(1 - \frac{1}{4}p)$</h4>
+					</li>
+				</ul>
+			</li> <br>
+			<li><h3>UPGMA Method</h3><br>
+				<ul>
+					<li><strong>Ultrametric Tree:</strong>
+						<p style="text-indent:25px">A phylogenetic tree in which the distance from 
+						each leaf node to the root node is equal.</p>
+					</li><br>
+					<li><strong>Clade:</strong>
+						<p style="text-indent:25px">A group containing a single ancestor and
+						all of its descendants.</p>
+					</li><br>
+					<li><strong>Time Cost/Complexity:</strong>
+						<p style="text-indent:25px">A functional representation of the time 
+						required to run an algorithm.</p>
+					</li><br>
+					<li><strong>Distance Calculation:</strong><br>
+						<h4 style="text-indent:25px">$d_{AB, X} = \frac{1}{2}(d_{AX} + d_{BX})$</h4>
+					</li>
+				</ul>
+			</li> <br>
+			<li><h3>Neighbor Joining Method</h3><br>
+				<ul>
+					<li><strong>Operational Taxonomic Unit (OTU):</strong>
+						<p style="text-indent:25px">A species represented by a biological
+						sequence.</p>
+					</li><br>
+					<li><strong>Additive Property:</strong><br>
+						<h4 style="text-indent:25px">$d_{AB} = d{AX} + d_{BX}$.</h4>
+					</li><br>
+					<li><strong>Net Divergence:</strong><br>
+						<h4 style="text-indent:25px">$r_{i} = \sum_{} d_{ik}$</h4>
+					</li><br>
+					<li><strong>Distance Calculation:</strong><br>
+						<h4 style="text-indent:25px">$M_{ij} = d_{ij} - \frac{r_{i} - r_{j}}{N - 2} $</h4>
+					</li><br>
+					<li><strong>Branch Length Calculation:</strong><br>
+						<h4 style="text-indent:25px">$S_{AX} = \frac{1}{2}d_{AB} + \frac{1}{2(N - 2)}(r_{A} - r_{B})$</h4>
+						<h4 style="text-indent:25px">$S_{BX} = S_{AB} - S_{AX}$</h4>
+					</li>
+				</ul>
+			</li> <br>
+			<li><h3>Fitch-Margoliash Method</h3><br>
+				<ul>
+					<li><strong>Distance From Branch Lengths:</strong><br>
+						<h4 style="text-indent:25px">$d_{XY} = b_{1} + b_{2}$</h4>
+						<h4 style="text-indent:25px">$d_{XZ} = b_{1} + b_{3}$</h4>
+						<h4 style="text-indent:25px">$d_{YZ} = b_{2} + b_{3}$</h4>
+					</li><br>
+					<li><strong>Branch Lengths From Distances:</strong><br>
+						<h4 style="text-indent:25px">$b_{1} = \frac{1}{2}(d_{XY} + d_{XZ} - d_{YZ})$</h4>
+						<h4 style="text-indent:25px">$b_{2} = \frac{1}{2}(d_{XY} + d_{YZ} - d_{XZ})$</h4>
+						<h4 style="text-indent:25px">$b_{3} = \frac{1}{2}(d_{XZ} + d_{YZ} - d_{XY})$</h4>
+					</li><br>
+					<li><strong>Distance Calculation:</strong><br>
+						<h4 style="text-indent:25px">$d_{AB} = \frac{1}{N_{A}N_{B}}\sum\limits_{i \in A, j \in B}d_{ij}$</h4>
+					</li><br>
+					<li><strong>Distance Matrix Calculation:</strong><br>
+						<h4 style="text-indent:25px">$d_{DA} = \frac{N_{B}d_{BA} + N_{C}d_{CA}}{N_{B} + N_{C}}$</h4>
+					</li>
+				</ul>
+			</li> <br>
+			<li><h3>Maximum Parsimony Method</h3><br>
+				<ul>
+					<li><strong>Character:</strong>
+						<p style="text-indent:25px">Any attribute along which a sequence may vary.</p>
+					</li><br>
+					<li><strong>Character State:</strong>
+						<p style="text-indent:25px">Any possible state of a character. </p>
+					</li><br>
+					<li><strong>Informative Site:</strong>
+						<p style="text-indent:25px">A position in an alignment which contains at least two
+						different character states, with each character state occurring in at least two
+						of the sequences.</p>
+				</ul>
+			</li> <br>
+			<li><h3>Maximum Likelihood Method</h3><br>
+				<ul>
+					<li><strong>Likelihood Calculation:</strong><br>
+						<h4 style="text-indent:25px">$L = \sum_{j = 1}^{n} L_{j}$</h4>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</body>
+	<footer class="footer"><br><br></footer>
+<html>
