@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Distance Matrices</title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+		<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+	
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">Phylo-Made-Easy</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="msa1.html">Multiple Sequence Alignment</a></li>
+						<li class="active"><a href="dm1.html">Distance Matrices</a></li>
+						<li class="dropdown">
+							<a href="build1.html" class="dropdown-toggle" data-toggle="dropdown">Building Algorithms <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-header">Distance-Based</li>
+								<li><a href="build1.html">UPGMA Method</a></li>
+								<li><a href="build2.html">Neighbor Joining Method</a></li>
+								<li><a href="build3.html">Fitch-Margoliash Method</a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">Character-Based</li>
+								<li><a href="build4.html">Maximum Parsimony Method</a></li>
+								<li><a href="build5.html">Maximum Likelihood Method</a></li>
+							</ul>
+						</li>
+						<li><a href="terms.html">Terms and Equations</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div> <br><br><br>
+	
+		<h1 class="text-center">Distance Matrix</h1> <br>
+		<div class="span5" style="padding-left:100px;padding-right:100px">
+			<p>Now that we have a multiple sequence alignment, we need a way to represent the genetic distances between each sequence.
+			This can be achieved through the construction of a distance matrix, which is a representation of the pairwise distances between a given sequence
+			and each other sequence of interest, using the information provided by the alignment.</p>
+			<div style="text-align: center">
+				<img src="http://deepclimate.files.wordpress.com/2011/06/wegman-distance-matrix.jpg" height="200" width="400">
+			</div> <br>
+			<p>To calculate the pairwise distance, count the number of positions with mismatched nucleotides/amino acids between two
+			sequences of interest. This number is divided by the length of the alignment to give a proportion of the number of mismatched sites between the sequences.
+			For now, this proportion will be called $p$.</p>
+			<p>This application, when calculating distance matrices, will follow the Jukes-Cantor model for evolution, which holds
+			that all point mutations in sequences are equally likely. To calculate a genetic distance that stays true to this model, the following equation
+			must be used, where $d$ is the pairwise distance between two given sequences, and $p$ is defined above:</p> <br>
+			<h3 align="center">$d = -\frac{3}{4} ln(1 - \frac{1}{4}p)$</h3> <br><br>
+			<div style="text-align:center">
+				<img src="http://i1168.photobucket.com/albums/r497/tquintan1/DM2_zps4a6c4b8c.jpg" height="410" width="530">
+			</div> <br>
+			<p>Distance matrices are used by distance-based tree-building methods which seek to group the sequences by either
+			minimizing the genetic distance or maximizing the similarity between the sequences. However, character-based methods use different criteria
+			when building trees. The strengths and weaknesses of each methods will be described in the following sections.</p> <br>
+			
+			<h3>Try It Yourself</h3> <br>
+			<div>
+				<img src="http://i1168.photobucket.com/albums/r497/tquintan1/msa1_zps0b1747ed.jpg" height="80" width="580">
+			</div> <br>
+			<form role="form" id="form1" class="form form-horizontal" method="post">
+				<div class="form-group">
+					<label for="ans1">What is the genetic distance between Sequence 1 and Sequence 3,
+					following the Jukes-Cantor model, rounded to three decimal places?</label> <br><br>
+					<div class="col-md-2">
+						<input type="text" class="form-control" id="ans1">
+					</div>
+				</div>
+				<button id="sub1" type="button" class="btn btn-default">Submit</button>
+			</form> <br><br>
+			<form role="form" id="form2" class="form form-horizontal" method="post">
+				<div class="form-group">
+					<label for="ans2">What is the genetic distance between Sequence 2 and Sequence 3,
+					following the Jukes-Cantor model, rounded to three decimal places?</label> <br><br>
+					<div class="col-md-2">
+						<input type="text" class="form-control" id="ans2">
+					</div>
+				</div>
+				<button id="sub2" type="button" class="btn btn-default">Submit</button>
+			</form> <br><br>
+			<form role="form" id="form3" class="form form-horizontal" method="post">
+				<div class="form-group">
+					<label for="ans3">What is the genetic distance between Sequence 1 and Sequence 2,
+					following the Jukes-Cantor model, rounded to three decimal places?</label> <br><br>
+					<div class="col-md-2">
+						<input type="text" class="form-control" id="ans3">
+					</div>
+				</div>
+				<button id="sub3" type="button" class="btn btn-default">Submit</button>
+			</form>
+		</div>
+		<div class="text-center">
+			<a href="msa1.html" class="btn btn-default" role="button">Previous Section</a>
+			<a href="build1.html" class="btn btn-default" role="button">Next Section</a>
+		</div>
+		
+		<script>
+			$(document).ready(function(){
+				$('#sub1').on('click', function(e){
+					if ($("#ans1").val() == "0.079" || $("#ans1").val() == ".079"){
+						alert("Correct!");
+					}
+					else {
+						alert("Incorrect. Try again...");
+						document.getElementById("ans1").value="";
+					}
+				});
+				
+				$('#sub2').on('click', function(e){
+					if ($("#ans2").val() == "0.137" || $("#ans2").val() == ".137"){
+						alert("Correct!");
+					}
+					else {
+						alert("Incorrect. Try again...");
+						document.getElementById("ans2").value="";
+					}
+				});
+				
+				$('#sub3').on('click', function(e){
+					if ($("#ans3").val() == "0.093" || $("#ans3").val() == ".093"){
+						alert("Correct!");
+					}
+					else {
+						alert("Incorrect. Try again...");
+						document.getElementById("ans3").value="";
+					}
+				});
+			})
+		</script>
+	</body>
+	<footer class="footer"><br><br></footer>
+</html>
