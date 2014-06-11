@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Tree Building Algorithms</title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+		<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+	
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">Phylo-Made-Easy</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="msa1.html">Multiple Sequence Alignment</a></li>
+						<li><a href="dm1.html">Distance Matrices</a></li>
+						<li class="dropdown">
+							<a href="build1.html" class="dropdown-toggle" data-toggle="dropdown">Building Algorithms <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-header">Distance-Based</li>
+								<li><a href="build1.html">UPGMA Method</a></li>
+								<li><a href="build2.html">Neighbor Joining Method</a></li>
+								<li><a href="build3.html">Fitch-Margoliash Method</a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">Character-Based</li>
+								<li class="active"><a href="build4.html">Maximum Parsimony Method</a></li>
+								<li><a href="build5.html">Maximum Likelihood Method</a></li>
+							</ul>
+						</li>
+						<li><a href="terms.html">Terms and Equations</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div> <br><br><br>
+	
+		<h1 class="text-center">Maximum Parsimony Method</h1> <br>
+		<div class="span5" style="padding-left:100px;padding-right:100px">
+			<p>Unlike the four previous methods, the Maximum Parsimony (MP) method does not need a distance matrix to produce a
+			phylogenetic tree. Instead, the method relies on characters and their respective states. A character, in the phylogenetic sense, is defined
+			as any attribute or variable on which a sequence can vary. A character is composed of the several possible states that can occur in a given
+			sequence, and in the context of phylogenetic trees, the states are defined as the four possible nucleotides (A, C, G, T/U). Also unlike the
+			distance-based methods, character-based methods construct numerous trees, and then select the "best" tree based on different criteria.</p>
+			<p>The total number of rooted trees is defined by the following equation, where $n$ is the number of distinct sequences: <br><br>
+			<h3 align="center">$N_{r} = \frac{(2n-3)!}{(2e^{n-2})(n-2)!}$</h3>
+			</p> <br>
+			<p>The total number of unrooted trees is defined by the following equation, where $n$ is the number of distinct sequences: <br><br>
+			<h3 align="center">$N_{u} = \frac{(2n-5)!}{(2e^{n-3})(n-3)!}$</h3>
+			</p> <br>
+			<p> The MP method follows the principle of parsimony, defined by Occam's Razor, which states that the simplest solution should be selected.
+			In this case, however, the simplest solution is the tree which contains the least amount of evolutionary changes, or mutations.</p>
+			<p>The MP algorithm is as follows:</p>
+				<ol>
+					<li>
+						Find all informative sites within the sequences of interest. An informative site is defined as a position
+						in the multiple sequence alignment which contains at least two character states, or nucleotides, and each of these states occurs in at least
+						two of the sequences of interest. <br><br><br>
+						<div style="text-align: center">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B4_1_zpsbeb12951.jpg" height="230" width="420">
+						</div>
+					</li> <br><br>
+					<li>
+						Once these sites are known, construct all possible trees from the informative sites. The length of each branch is the number
+						of substitutions required to transform one sequence into another.<br><br><br>
+						<div style="text-align: center">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B4_2_zps0d838aa7.jpg" height="340" width="530">
+						</div>
+					</li> <br><br>
+					<li>
+						The tree with the smallest number of mutations is considered the "best" tree, and is chosen as the output.
+					</li>
+				</ol> <br>
+			<p>The MP method is built on the principle that the simplest explanation should be chosen. In this case, the simplest solution is 
+			the tree with the least amount of mutation over time. The MP method, like other character-based methods, does not reduce the information
+			found within a multiple sequence alignment to a single integer representing the genetic distance, ultimately producing a more accurate
+			phylogenetic tree. However, analysis of the informative sites does not utilize all the information provided. Still, unlike distance-based
+			methods, the MP method focuses on selecting the most probable estimation of genetic evolution and the similarities among the sequences of
+			interest.</p>
+			<p>Character-based methods, although more accurate than distance-based methods, often have a much higher time cost. The MP method often
+			produces multiple "most-parsimonious trees," which, as of now, is considered a viable output. Choosing the most parsimonious trees out
+			of the "most-parsimonious trees" is difficult, especially when a plethora of unrooted trees are calculated for only a few sequences, and
+			therefore the time cost of the MP method is NP-hard. In conclusion, the MP method should be used when a more accurate phylogenetic tree
+			is required and there are only a few sequences of interest.</p> <br>
+			
+			<h3>Try It Yourself</h3> <br>
+			<form role="form" id="form1" class="form form-horizontal" method="post">
+				<div class="form-group">
+					<label for="ans1">How many rooted trees can be formed from a multiple sequence alignment of 7 sequences?</label> <br><br>
+					<div class="col-md-2">
+						<input type="text" class="form-control" id="ans1">
+					</div>
+				</div>
+				<button id="sub1" type="button" class="btn btn-default">Submit</button>
+			</form> <br><br>
+			<form role="form" id="form2" class="form form-horizontal" method="post">
+				<div class="form-group">
+					<label for="ans2">How many unrooted trees can be formed from a multiple sequence alignment of 9 sequences?</label> <br><br>
+					<div class="col-md-2">
+						<input type="text" class="form-control" id="ans2">
+					</div>
+				</div>
+				<button id="sub2" type="button" class="btn btn-default">Submit</button>
+			</form> <br><br>
+			<div>
+				<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B4_3_zps9cd2b85d.jpg" width="420" height="230">
+			</div> <br><br>
+			<form role="form" id="form3" class="form form-horizontal" method="post">
+				<div class="form-group">
+					<label for="ans3">How many informative sites are there?</label> <br><br>
+					<div class="col-md-2">
+						<input type="text" class="form-control" id="ans3">
+					</div>
+				</div>
+				<button id="sub3" type="button" class="btn btn-default">Submit</button>
+			</form> <br><br>
+			<form role="form" id="form4" class="form form-horizontal" method="post">
+				<div class="form-group">
+					<label for="ans4">What is the greatest number of mutations for the unrooted trees formed from the above
+					multiple sequence alignment?</label> <br><br>
+					<div class="col-md-2">
+						<input type="text" class="form-control" id="ans4">
+					</div>
+				</div>
+				<button id="sub4" type="button" class="btn btn-default">Submit</button>
+			</form>
+			
+		</div>
+		<div class="text-center">
+			<a href="build3.html" class="btn btn-default" role="button">Previous Section</a>
+			<a href="build5.html" class="btn btn-default" role="button">Next Section</a>
+		</div>
+
+		<script>
+			$(document).ready(function(){
+				$('#sub1').on('click', function(e){
+					if ($("#ans1").val() == "954"){
+						alert("Correct!");
+					}
+					else {
+						alert("Incorrect. Try again...");
+						document.getElementById("ans1").value="";
+					}
+				});
+				
+				$('#sub2').on('click', function(e){
+					if ($("#ans2").val() == "34459425" || $("#ans2").val() == "34,459,425"){
+						alert("Correct!");
+					}
+					else {
+						alert("Incorrect. Try again...");
+						document.getElementById("ans2").value="";
+					}
+				});
+				
+				$('#sub3').on('click', function(e){
+					if ($("#ans3").val() == "3"){
+						alert("Correct!");
+					}
+					else {
+						alert("Incorrect. Try again...");
+						document.getElementById("ans3").value="";
+					}
+				});
+				
+				$('#sub4').on('click', function(e){
+					if ($("#ans4").val() == "8"){
+						alert("Correct!");
+					}
+					else {
+						alert("Incorrect. Try again...");
+						document.getElementById("ans4").value="";
+					}
+				});
+			})
+		</script>
+	</body>
+	<footer class="footer"><br><br></footer>
+</html>
