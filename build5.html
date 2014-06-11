@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Tree Building Algorithms</title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+		<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+	
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">Phylo-Made-Easy</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="msa1.html">Multiple Sequence Alignment</a></li>
+						<li><a href="dm1.html">Distance Matrices</a></li>
+						<li class="dropdown">
+							<a href="build1.html" class="dropdown-toggle" data-toggle="dropdown">Building Algorithms <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-header">Distance-Based</li>
+								<li><a href="build1.html">UPGMA Method</a></li>
+								<li><a href="build2.html">Neighbor Joining Method</a></li>
+								<li><a href="build3.html">Fitch-Margoliash Method</a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">Character-Based</li>
+								<li><a href="build4.html">Maximum Parsimony Method</a></li>
+								<li class="active"><a href="build5.html">Maximum Likelihood Method</a></li>
+							</ul>
+						</li>
+						<li><a href="terms.html">Terms and Equations</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div> <br><br><br>
+	
+		<h1 class="text-center">Maximum Likelihood Method</h1> <br>
+		<div class="span5" style="padding-left:100px;padding-right:100px">
+			<p>The Maximum Likelihood (ML) method is similar to the MP method in that it creates a phylogenetic
+			tree based on the sites within the sequences of interest. However, the ML method focuses on the likelihood that an
+			unrooted tree produced from the nucleotides or amino acids found at each site will occur in the final most-likely phylogenetic tree.</p>
+			<p>The ML algorithm is as follows:</p>
+				<ol>
+					<li>
+						For each site within the multiple sequence alignment, produce an unrooted tree containing the nucleotides/amino acids found
+						at that site. <br><br><br>
+						<div style="text-align:center">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B5_1_zps28ce0339.jpg" width="790" height="290">
+						</div> <br><br>
+					</li>
+					<li>
+						For each of the unrooted trees, calculate the likelihood $L_{j}$ at each site $j$ from a chosen model of substitution, such as one which gives
+						the probability for nucleotide substitution based on the length of the connecting branch. Only the points of the tree, that is, the nodes which 
+						are at the head of each clade, are used to calculate the likelihood. Be sure to use a model that is specific to the multiple sequence alignment
+						and the resulting unrooted trees. <br><br><br>
+						<div style="text-align:center">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B5_2_zpsc99e188b.jpg" width="500" height="250">
+						</div> <br><br>
+					</li>
+					<li>
+						Calculate the total likelihood of the tree using the following equation, where $L$ is the total likelihood and $n$ is the number of sites within
+						the multiple sequence alignment: <br><br>
+						<h3 align="center">$L = \sum_{j = 1}^{n} L_{j}$</h3> <br>
+					</li>
+					<li>
+						The tree with the greatest likelihood is considered the "best" tree, and is chosen as the output.
+					</li>
+				</ol> <br>			
+			<p>The ML method is one of the tree-building methods which has a base within statistical analysis, as maximum-likelihood analysis is used in estimating a
+			statistically relevant model for a dataset. Also, the ML method is the only method presented which uses all the data provided by the multiple sequence
+			alignment. Ultimately, when there are no informative sites within the multiple sequence alignment to use the MP method, the ML method is then used to create a more
+			accurate tree than distance-based methods, although at a much higher time cost.</p>
+			<p>The time complexity for the ML method is unknown, as there are many possible combinations of data (different models of substitution, whether the most-likely
+			tree is unknown, etc.) with which to calculate the most-likely tree.</p> <br>
+		</div>
+		<div class="text-center">
+			<a href="build4.html" class="btn btn-default" role="button">Previous Section</a>
+		</div>
+	</body>
+	<footer class="footer"><br><br></footer>
+</html>
