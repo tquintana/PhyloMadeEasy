@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Tree Building Algorithms</title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+		<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+	
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">Phylo-Made-Easy</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="msa1.html">Multiple Sequence Alignment</a></li>
+						<li><a href="dm1.html">Distance Matrices</a></li>
+						<li class="dropdown">
+							<a href="build1.html" class="dropdown-toggle" data-toggle="dropdown">Building Algorithms <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-header">Distance-Based</li>
+								<li class="active"><a href="build1.html">UPGMA Method</a></li>
+								<li><a href="build2.html">Neighbor Joining Method</a></li>
+								<li><a href="build3.html">Fitch-Margoliash Method</a></li>
+								<li class="divider"></li>
+								<li class="dropdown-header">Character-Based</li>
+								<li><a href="build4.html">Maximum Parsimony Method</a></li>
+								<li><a href="build5.html">Maximum Likelihood Method</a></li>
+							</ul>
+						</li>
+						<li><a href="terms.html">Terms and Equations</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div> <br><br><br>
+	
+		<h1 class="text-center">UPGMA Method</h1> <br>
+		
+		<div class="span5" style="padding-left:100px;padding-right:100px">
+		
+			<p>The UPGMA, or Unweighted Pair Group Method with Arithmetic Mean, is the simplest of the distance-based tree-building
+			methods. UPGMA assumes a constant rate of evolution, meaning all sequences have roughly the same amount of mutation. UPGMA takes a distance matrix
+			and produces a rooted phylogenetic tree, grouping together sequences with the smallest genetic distance between each other. Also, UPGMA builds an
+			ultrametric tree, that is, each leaf node is equidistant to the root node.</p>
+			<p>The UPGMA algorithm is as follows:</p>
+				<ol>
+					<li>
+						Find the two sequences with the shortest genetic distance, and pair them together with branch lengths of half the
+						genetic distance. This produces a clade, or group of sequences with a common ancestor, with the original genetic distance between the
+						sequences. <br><br><br>
+						<div style="text-align: center">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B1_1b_zps48a4713b.jpg">
+						</div>
+					</li> <br><br>
+					<li>
+						Next, calculate a new distance matrix using the following equation, where $A$ and $B$ are the arbitrary sequences
+						with the shortest distance, $X$ is all other sequences in the matrix, and $d$ is the pairwise distance: <br><br>
+						<h3 align="center">$d_{AB, X} = \frac{1}{2}(d_{AX} + d_{BX})$</h3> <br>
+						<div style="text-align: center">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B1_9_zps0c4586fa.jpg" width="400" height="250">
+						</div>
+					</li> <br><br>
+					<li>
+						Now that a new distance matrix is created, find the sequences with the smallest distance between them, pair the
+						sequences together with branch lengths of half their genetic distance, and calculate another new distance matrix. <br><br><br>
+						<div style="text-align: center">
+							<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B1_2b_zpsd90d6992.jpg">
+						</div>
+					</li> <br><br>
+					<li>
+						Continue these steps until the new distance matrix is empty. The end result will be a rooted phylogenetic tree.
+					</li>
+				</ol> <br>
+			
+			<p>As UPGMA assumes a constant rate of mutation, which is rarely seen in practice, it is used as either a guide for highly sophisticated 
+			trees or a phenogram which represents the phenotypic relations between sequences or organisms. Therefore, UPGMA trees are not used to infer
+			any relationship between sequences. Also, the UPGMA is only to be used on data which will produce an ultrametric tree.</p>
+			<p>The time cost of this algorithm is $O(n^{2})$, since there are $n-1$ iterations, with each iteration calculating $n$ positions in a matrix.</p> <br><br>
+
+			<div id="carousel-id" class="carousel slide" data-ride="carousel">
+				<div class="carousel-inner">
+					<div class="item active" style="text-align:center">
+						<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B1_5_zps3cd723e2.jpg"> <br>
+						<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B1_1_zps413277e1.jpg">
+					</div>
+					<div class="item">
+						<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B1_6_zps38fec671.jpg"> <br>
+						<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B1_2_zpsa08ed6da.jpg">
+					</div>
+					<div class="item">
+						<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B1_7_zps6055fd00.jpg"> <br>
+						<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B1_3_zps38abed8d.jpg">
+					</div>
+					<div class="item">
+						<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B1_8_zps361ca433.jpg"> <br>
+						<img src="http://i1168.photobucket.com/albums/r497/tquintan1/B1_4_zpsf6e62895.jpg">
+					</div>
+				</div>
+				<a class="carousel-control left" href="#carousel-id" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+				</a>
+				<a class="carousel-control right" href="#carousel-id" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</a>
+			</div> <br><br><br>
+			
+			<h3>Try It Yourself</h3> <br>
+			
+			<div>
+				<img src="http://i1168.photobucket.com/albums/r497/tquintan1/upgma_dm1_zpsb7fcc033.jpg" height="200" width="410">
+			</div> <br><br><br>
+			
+			<form role="form" id="form1" class="form form-horizontal" method="post">
+				<div class="form-group">
+					<label for="ans1">Given that $B$ and $F$ have the lowest genetic distance of 1...</label> <br><br>
+					What is $d_{BF,\ A}$? <br><br>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="ans1">
+					</div> <br><br><br>
+					What is $d_{BF,\ C}$? <br><br>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="ans2">
+					</div> <br><br><br>
+					What is $d_{BF,\ D}$? <br><br>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="ans3">
+					</div> <br><br><br>
+					What is $d_{BF,\ E}$? <br><br>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="ans4">
+					</div> <br><br><br>
+					What is $d_{BF,\ G}$? <br><br>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="ans5">
+					</div>
+				</div>
+				<button id="sub1" type="button" class="btn btn-default">Submit</button>
+			</form> <br><br>
+			
+			<form role="form" id="form2" class="form form-horizontal" method="post">
+				<div class="form-group">
+					<label for="ans6">After producing a rooted phylogenetic tree, what is the path length
+					to each leaf node?</label> <br><br>
+					<div class="col-md-1">
+						<input type="text" class="form-control" id="ans6">
+					</div>
+				</div>
+				<button id="sub2" type="button" class="btn btn-default">Submit</button>
+			</form> <br><br>
+			
+			<style>
+				.carousel{
+				width: 40%;
+				max-height: 400px;
+				margin: auto;
+				border-style: solid;
+				border-width: 1px;
+				}
+				
+				.carousel img{
+				margin: 0 auto;
+				padding-bottom: 10px;
+				}
+				
+				.carousel-control.left, .carousel-control.right {
+				background-image: none
+				}
+			</style>
+			
+		</div>
+		
+		<div class="text-center">
+			<a href="dm1.html" class="btn btn-default" role="button">Previous Section</a>
+			<a href="build2.html" class="btn btn-default" role="button">Next Section</a>
+		</div>
+		
+		<script>
+			$(document).ready(function(){
+				$('.carousel').carousel({
+					interval: false
+				});
+				
+				$('#sub1').on('click', function(e){
+					if ($("#ans1").val() == "18.5" && $("#ans2").val() == "31.5" && $("#ans3").val() == "17.5" && $("#ans4").val() == "35.5" && $("#ans5").val() == "12.5"){
+						alert("Correct!");
+					}
+					else {
+						alert("One or more answers are incorrect. Try again...");
+						document.getElementById("ans1").value="";
+						document.getElementById("ans2").value="";
+						document.getElementById("ans3").value="";
+						document.getElementById("ans4").value="";
+						document.getElementById("ans5").value="";
+					}
+				});
+				
+				$('#sub2').on('click', function(e){
+					if ($("#ans6").val() == "17"){
+						alert("Correct!");
+					}
+					else {
+						alert("Incorrect. Try again...");
+						document.getElementById("ans6").value="";
+					}
+				});
+			});
+		</script>
+		
+	</body>
+	<footer class="footer"><br><br></footer>
+</html>
